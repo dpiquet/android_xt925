@@ -90,27 +90,20 @@ esac
 
 case "$target" in
     "msm8960")
+         echo powersave > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
          echo 1 > /sys/module/rpm_resources/enable_low_power/L2_cache
          echo 1 > /sys/module/rpm_resources/enable_low_power/pxo
          echo 1 > /sys/module/rpm_resources/enable_low_power/vdd_dig
          echo 1 > /sys/module/rpm_resources/enable_low_power/vdd_mem
          echo 1 > /sys/module/pm_8x60/modes/cpu0/power_collapse/suspend_enabled
          echo 1 > /sys/module/pm_8x60/modes/cpu1/power_collapse/suspend_enabled
-         echo 1 > /sys/module/pm_8x60/modes/cpu2/power_collapse/suspend_enabled
-         echo 1 > /sys/module/pm_8x60/modes/cpu3/power_collapse/suspend_enabled
          echo 1 > /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/suspend_enabled
          echo 1 > /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/suspend_enabled
-         echo 1 > /sys/module/pm_8x60/modes/cpu2/standalone_power_collapse/suspend_enabled
-         echo 1 > /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/suspend_enabled
          echo 1 > /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/idle_enabled
          echo 1 > /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/idle_enabled
-         echo 1 > /sys/module/pm_8x60/modes/cpu2/standalone_power_collapse/idle_enabled
-         echo 1 > /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/idle_enabled
          echo 1 > /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled
          echo 1 > /sys/module/msm_show_resume_irq/parameters/debug_mask
          echo 1 > /sys/devices/system/cpu/cpu1/online
-         echo 1 > /sys/devices/system/cpu/cpu2/online
-         echo 1 > /sys/devices/system/cpu/cpu3/online
          echo 1 > /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
          chown -h system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
          chown -h system /sys/devices/system/cpu/cpufreq/interactive/boost
@@ -123,30 +116,14 @@ case "$target" in
          chown -h system /sys/devices/system/cpu/cpufreq/interactive/target_loads
          chown -h system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
          chown -h system /sys/devices/system/cpu/cpufreq/interactive/timer_slack
-         echo 384000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+         echo 486000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
          echo 1100000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-         echo 384000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
-         echo 1100000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
-         echo 384000 > /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq
-         echo 1100000 > /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq
-         echo 384000 > /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq
-         echo 1100000 > /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq
          chown -h system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
          chown -h system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-         chown -h system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
-         chown -h system /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
-         chown -h system /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq
-         chown -h system /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq
-         chown -h system /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq
-         chown -h system /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq
          chown -h root.system /sys/devices/system/cpu/mfreq
          chmod -h 220 /sys/devices/system/cpu/mfreq
          chown -h root.system /sys/devices/system/cpu/cpu1/online
-         chown -h root.system /sys/devices/system/cpu/cpu2/online
-         chown -h root.system /sys/devices/system/cpu/cpu3/online
          chmod -h 664 /sys/devices/system/cpu/cpu1/online
-         chmod -h 664 /sys/devices/system/cpu/cpu2/online
-         chmod -h 664 /sys/devices/system/cpu/cpu3/online
          soc_id=`cat /sys/devices/system/soc/soc0/id`
          case "$soc_id" in
              "130")
